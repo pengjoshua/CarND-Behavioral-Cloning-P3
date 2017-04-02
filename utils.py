@@ -10,7 +10,8 @@ from scipy.ndimage import rotate
 from scipy.stats import bernoulli
 from scipy.misc import imread, imresize
 
-
+# Random shear from Kaspar Sakmann's article on data augmentation for behavorial cloning
+# Source: https://medium.com/@ksakmann/behavioral-cloning-make-a-car-drive-like-yourself-dc6021152713
 def random_shear(image, steering, shear_range=200):
     rows, cols, ch = image.shape
     dx = np.random.randint(-shear_range, shear_range + 1)
