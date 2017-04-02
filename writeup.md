@@ -74,7 +74,7 @@ Next, I randomly apply a horizontal shear to the images with 90% probability. Th
 
  Original | Sheared
 ----------|---------
-![sheared0](./images/sheared0.jpg) | ![sheared1](./images/sheared1.jpg)
+![sheared0](./images/sheared0.jpeg) | ![sheared1](./images/sheared1.jpeg)
 
 Not all of the pixels in the images contain useful information. The top portion contains trees, hills, mountains, and sky and the bottom portion captures the hood of the car. I crop the top 35% and bottom 10% of images to focus only on the portion of the image that is useful for predicting a steering angle. Cropping images also helps to reduce training times.
 
