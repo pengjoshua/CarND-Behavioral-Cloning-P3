@@ -66,10 +66,6 @@ The left-right skew can be eliminated by horizontally flipping the images and co
 
 The simulator records images from 3 cameras at each time step (left, center, and right). First, I randomly select (with equal probability) a single image and its steering angle. I use random selection instead of adding all 3 sets of images into the training data in order to reduce the training time.
 
- Left | Center | Right
-------|--------|-------
-![left](./images/left.png) | ![center](./images/center.png) | ![right](./images/right.png)
-
 Next, I randomly apply a horizontal shear to the images with 90% probability. The pixels at the bottom of images are held fixed while the top half is moved randomly to the left or right. The steering angle is adjust proportionally to the shearing angle. This shearing process makes straightaways artificially appear curvy. I do not use 100% probability in order to keep a small percentage of images that will help the car to navigate the training track.
 
  Original | Sheared
