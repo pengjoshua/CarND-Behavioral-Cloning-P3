@@ -82,7 +82,7 @@ Lastly, I resize the images from 160x320 pixels to 64x64 pixels to further reduc
 
 #### 3. Model Architecture
 
-My convolutional neural network (CNN) architecture was inspired by the CNN as described in NVIDIA's End to End Learning for Self-Driving Cars paper. My model contains 5 convolutional layers and 5 fully connected layers. My model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer. I apply Max Pooling layers after each convolutional layer to reduce training time. I also apply dropout on each fully activated layer to reduce overfitting.
+My convolutional neural network (CNN) architecture was inspired by the CNN as described in NVIDIA's End to End Learning for Self-Driving Cars paper. My model contains 5 convolutional layers and 5 fully connected layers. My model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer. I start with a lambda layer as it is a convenient way to parallelize image normalization. I apply Max Pooling layers after each convolutional layer to reduce training time. I also apply dropout on each fully activated layer to reduce overfitting.
 
 | Layer (type)                    | Output Shape       | Param #   | Connected to                     
 |---------------------------------|--------------------|-----------|-------------------------
@@ -128,15 +128,15 @@ The model was trained and validated on different data sets to ensure that the mo
 
 #### 5. Autonomous mode to test model and results
 
-Finally, after executing
+I generate my training model, model.h5, after executing
 ```sh
 python model.py
 ```
-I can run the simulator in autonomous mode to test my model by executing
+I add the image normalization and image resizing preprocessing steps in the drive.py file. Then, I run the simulator in autonomous mode to test my model by executing
 ```sh
 python drive.py model.h5
 ```
-I received a final training loss of 0.0143 and a validation loss of 0.0175. The following is a short snippet of my model successfully driving around track one without leaving the road. The model drives the full course of the training track staying in the middle of the road at a constant speed of around 9 mph.
+I received a final training loss of 0.0143 and a validation loss of 0.0175. The following is a short snippet of my model successfully driving around track one without leaving the road. The model drives the full course of the training track staying in the middle of the road.
 
 ![training_track](./images/training_track.gif)
 
@@ -146,4 +146,4 @@ The model drives the initial section of the validation track but fails to make i
 
 #### 6. Future Directions
 
-I believe I can improve my model by teaching it through examples of navigating sharp turns, steering back to the center of the road after wandering off the side, and handling zig zag road patterns.
+I believe I can improve my model by teaching it through examples of navigating sharp turns, steering back to the center of the road after wandering off the side, and handling zig zag road patterns. I could also train my model on a portion of the validation track but I wanted to see how well a model trained only on the training track would perform on the unseen validation track.

@@ -9,6 +9,7 @@ from keras.models import Sequential
 from keras.layers import Flatten, Dense, Dropout, Lambda, Activation, MaxPooling2D
 from keras.layers.convolutional import Convolution2D
 from keras.optimizers import Adam
+import matplotlib.pyplot as plt
 
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
@@ -60,12 +61,24 @@ model.compile(loss='mse', optimizer=adam)
 train_generator = utils.generate_batch()
 validation_generator = utils.generate_batch()
 
-history = model.fit_generator(train_generator,
-                              samples_per_epoch=20032,
-                              nb_epoch=10,
-                              validation_data=validation_generator,
-                              nb_val_samples=6400,
-                              verbose=1)
+history_object = model.fit_generator(train_generator,
+                                     samples_per_epoch=20032,
+                                     nb_epoch=10,
+                                     validation_data=validation_generator,
+                                     nb_val_samples=6400,
+                                     verbose=1)
+
+### print the keys contained in the history object
+print(history_object.history.keys())
+
+### plot the training and validation loss for each epoch
+plt.plot(history_object.history['loss'])
+plt.plot(history_object.history['val_loss'])
+plt.title('model mean squared error loss')
+plt.ylabel('mean squared error loss')
+plt.xlabel('epoch')
+plt.legend(['training set', 'validation set'], loc='upper right')
+plt.show()
 
 model.save('model.h5')
 print('Model saved, completed running model.py')
