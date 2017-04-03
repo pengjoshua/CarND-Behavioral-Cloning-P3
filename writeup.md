@@ -136,7 +136,12 @@ I add the image normalization and image resizing preprocessing steps in the driv
 ```sh
 python drive.py model.h5
 ```
-I received a final training loss of 0.0143 and a validation loss of 0.0175. The following is a short snippet of my model successfully driving around track one without leaving the road. The model drives the full course of the training track staying in the middle of the road.
+
+I received a final training loss of 0.0143 and a validation loss of 0.0175. The model mean squared error loss for the training set and validation set reach a minimum at 8 training epochs.
+
+![mse](./images/mse.png)
+
+The following is a short snippet of my model successfully driving around track one without leaving the road. The model drives the full course of the training track staying in the middle of the road.
 
 ![training_track](./images/training_track.gif)
 
